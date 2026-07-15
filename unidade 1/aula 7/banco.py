@@ -36,6 +36,14 @@ def deposito(saldo):
     saldo += valor
     return saldo
 
+def cofrinho(saldo_cofrinho, valor):
+    saldo_cofrinho += valor
+
+    for mes in range(1, 13):
+        montante = saldo_cofrinho*(1+0.01)
+        print(f"O confrinho rendeu! Valor atual {montante}")
+    
+    
 if login_sucesso:
     while True:
         escolha_usuario = int(input(
