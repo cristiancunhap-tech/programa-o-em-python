@@ -42,6 +42,8 @@ def cofrinho(saldo_cofrinho, valor):
     for mes in range(1, 13):
         montante = saldo_cofrinho*(1+0.01)
         print(f"O confrinho rendeu! Valor atual {montante}")
+
+        return saldo_cofrinho
     
     
 if login_sucesso:
@@ -51,7 +53,7 @@ if login_sucesso:
             "1-Saldo\n"
             "2-Saque\n"
             "3-Deposito\n"
-            "4-Sair\n"
+            "0-Sair\n"
         ))
 
         if escolha_usuario == 1:
@@ -66,7 +68,7 @@ if login_sucesso:
             saldo_inicial = deposito(saldo_inicial)
             limpar()
 
-        elif escolha_usuario == 4:
+        elif escolha_usuario == 0:
             limpar()
             print("Obrigado por usar o nosso sistema.")
             break
