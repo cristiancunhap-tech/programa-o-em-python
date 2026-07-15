@@ -22,6 +22,7 @@ while True:
         print(f"Usuário ou senha incorretos. Você tem {numero_tentativas} tentativas restantes.")
 
 saldo_inicial = 0
+saldo_cofrinho = 0
 
 def limpar():
     os.system("cls")
@@ -36,11 +37,13 @@ def deposito(saldo):
     saldo += valor
     return saldo
 
-def cofrinho(saldo_cofrinho, valor):
+def cofrinho(saldo_cofrinho):
+    valor = float(input("Digite o valor para adicionar:\n"))
     saldo_cofrinho += valor
 
     for mes in range(1, 13):
         montante = saldo_cofrinho*(1+0.01)
+        saldo_cofrinho = montante
         print(f"O confrinho rendeu! Valor atual {montante}")
 
         return saldo_cofrinho
@@ -53,6 +56,7 @@ if login_sucesso:
             "1-Saldo\n"
             "2-Saque\n"
             "3-Deposito\n"
+            "4-Saldo Cofrinho\n"
             "0-Sair\n"
         ))
 
@@ -67,6 +71,9 @@ if login_sucesso:
         elif escolha_usuario == 3:
             saldo_inicial = deposito(saldo_inicial)
             limpar()
+
+        elif escolha_usuario == 4:
+            saldo_cofrinho = cofrinho(saldo_cofrinho)
 
         elif escolha_usuario == 0:
             limpar()
