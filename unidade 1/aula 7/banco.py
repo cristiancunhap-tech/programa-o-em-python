@@ -1,28 +1,8 @@
 import os
+import gemini
 
-numero_tentativas = 3
-login_sucesso = False
+usuarios_senhas = [["cristian", "1234"],["carlos","2421"]]
 
-while True:
-    login_usuario = input("Digite o nome de usuario: ")
-    login_senha = input("Digite a senha para o login: ")
-
-    if (login_usuario == "Cristian") and (login_senha == "1234"):
-        print("Login efetuado com sucesso!")
-        login_sucesso = True
-        break
-
-    else:
-        numero_tentativas -= 1
-
-        if numero_tentativas == 0:
-            print("Número máximo de tentativas atingido. Conta bloqueada.")
-            break
-
-        print(f"Usuário ou senha incorretos. Você tem {numero_tentativas} tentativas restantes.")
-
-saldo_inicial = 0
-saldo_cofrinho = 0
 
 def limpar():
     os.system("cls")
@@ -37,48 +17,65 @@ def deposito(saldo):
     saldo += valor
     return saldo
 
+
 def cofrinho(saldo_cofrinho):
     valor = float(input("Digite o valor para adicionar:\n"))
     saldo_cofrinho += valor
 
-    for mes in range(1, 13):
+    for mes in range(1,13):
         montante = saldo_cofrinho*(1+0.01)
         saldo_cofrinho = montante
-        print(f"O confrinho rendeu! Valor atual {montante}")
+        print(f"O cofrinho rendeu! Valor atual: {montante}")
+    
+    return saldo_cofrinho
 
-        return saldo_cofrinho
-    
-    
-if login_sucesso:
+
+
+def menu():
+    saldo_inicial = 0
+    saldo_cofrinho = 0
+
     while True:
-        escolha_usuario = int(input(
-            "Menu\n"
-            "1-Saldo\n"
-            "2-Saque\n"
-            "3-Deposito\n"
-            "4-Saldo Cofrinho\n"
-            "0-Sair\n"
-        ))
+        escolha_usuario = int(input("Menu\n1-Saldo\n2-Saque\n3-Deposito\n4-Cofrinho\n5- Falar com suporte\n0-Sair\n"))
 
         if escolha_usuario == 1:
             limpar()
-            print(f"Saldo atual: R${saldo_inicial}")
+            print(saldo_inicial)
 
         elif escolha_usuario == 2:
             saldo_inicial = saque(saldo_inicial)
             limpar()
-
+            
         elif escolha_usuario == 3:
             saldo_inicial = deposito(saldo_inicial)
             limpar()
-
+        
         elif escolha_usuario == 4:
             saldo_cofrinho = cofrinho(saldo_cofrinho)
+
+        elif escolha_usuario == 5:
+            gemini.atendimento_python()
 
         elif escolha_usuario == 0:
             limpar()
             print("Obrigado por usar o nosso sistema.")
             break
 
+        
+        
+        
+
+while True:
+    usuario_digitado = input("Insira o seu cartão.\n")
+    for usuario in usuarios_senhas:
+        if usuario[0] == usuario_digitado:
+            while True:
+                senha_digitada = input("Digite sua senha\n")
+                if usuario[1] == senha_digitada:
+                    menu()
+                    break
+                else:
+                    print("Senha incorreta.")
+            break
         else:
-            print("Opção inválida.")
+            print("Conta inválida. Verifique se o cartão foi inserido corretamente e se a conta está ativa.")
