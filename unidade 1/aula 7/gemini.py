@@ -1,6 +1,6 @@
 from google import genai
 
-client = genai.Client(api_key="AQ.Ab8RN6JDav_M_5Pr87goRrCWU_0fqR29a3rGLY3zUt5SuzbZwg")
+client = genai.Client(api_key="secret")
 
 def atendimento_python():
     interaction_id = None
