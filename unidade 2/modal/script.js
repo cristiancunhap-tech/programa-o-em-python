@@ -1,9 +1,9 @@
 const modalOverlay = document.querySelector(".modalOverlay");
 
 function abrirModal() {
-    modalOverlay.style.display = "flex";
+  modalOverlay.style.display = "flex";
 }
 
 function fecharModal() {
-    modalOverlay.style.display = "none";
+  modalOverlay.style.display = "none";
 }
